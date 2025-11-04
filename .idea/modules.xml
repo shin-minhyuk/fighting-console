@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/yut-nori.iml" filepath="$PROJECT_DIR$/yut-nori.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fighting-game.iml" filepath="$PROJECT_DIR$/fighting-game.iml" />
     </modules>
   </component>
 </project>
