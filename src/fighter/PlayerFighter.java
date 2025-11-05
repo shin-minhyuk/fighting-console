@@ -11,6 +11,7 @@ public class PlayerFighter extends Fighter {
         super(name);
         this.scanner = scanner;
     }
+
     public String chooseAction() {
         while (true) {
             System.out.print("액션을 선택하세요 (1 : 주먹 \n 2 : 발차기 \n 3 : 어퍼컷 \n 4 : 로우킥 \n 5 : 피하기 ");
