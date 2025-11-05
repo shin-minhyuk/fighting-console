@@ -10,7 +10,7 @@ public class PlayerFighter extends Fighter {
     public PlayerFighter(String name, Scanner scanner) {
         super(name);
         this.scanner = scanner;
-        System.out.println("플레이어 파이터 생성 완료: " + name);
+        System.out.println("플레이어 생성 완료: " + name);
 
     }
 

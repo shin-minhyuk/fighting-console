@@ -4,7 +4,7 @@ public class AIFighter extends Fighter{
 
     public AIFighter() {
         super(createRandomName());
-        System.out.println("AI 상대 생성 완료: " + super.getName());
+        System.out.println("AI 생성 완료: " + super.getName());
     }
 
     private static String createRandomName() {

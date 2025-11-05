@@ -19,33 +19,36 @@ public class GameManager {
 
         int turn = 1;
         while (!isGameOver()) {
-            Fighter firstTurnUser = decideFirstTurn();
-            Fighter secondTurnUser = (firstTurnUser == player) ? ai : player;
-            ConsoleUI.printTurnInfo(turn, firstTurnUser);
-
-            // --- 임시 테스트 로직 시작 ---
-            System.out.println("공격 테스트를 진행합니다!");
-
-            int damage1 = Dice.roll(10); // 1~10 랜덤
-            secondTurnUser.applyDamage(damage1);
-
-            // 즉시 종료 여부 확인 (AI나 플레이어가 죽을 수 있으니까)
-            if (isGameOver()) break;
-
-            // 반격자 공격
-            int damage2 = Dice.roll(10);
-            firstTurnUser.applyDamage(damage2);
-
-            // 현재 체력 표시
-            System.out.println("플레이어 HP: " + player.getHp() + " || AI HP: " + ai.getHp());
-            System.out.println("-----------------------------");
-
+            playTurn(turn);
             turn++;
         }
     }
 
+    // ----------------------------
+    // 🧩 한 턴 진행 (공격 / 반격)
+    // ----------------------------
+    private void playTurn(int turn) {
+        Fighter firstTurnUser = decideFirstTurn();
+        Fighter secondTurnUser = (firstTurnUser == player) ? ai : player;
+        ConsoleUI.printTurnInfo(turn, firstTurnUser);
+
+        // 선공자 공격
+        int damage1 = Dice.roll(10);
+        secondTurnUser.applyDamage(damage1);
+
+        if (isGameOver()) return;
+
+        // 반격자 공격
+        int damage2 = Dice.roll(10);
+        firstTurnUser.applyDamage(damage2);
+
+        ConsoleUI.printHPStatus(player, ai);
+    }
+
+    // ----------------------------
+    // 💀 게임 종료 판정
+    // ----------------------------
     private boolean isGameOver() {
-        // 플레이어 또는 AI 체력이 0 이하라면 게임 종료
         if (player.getHp() <= 0) {
             System.out.println("\n💀 플레이어가 쓰러졌습니다... 게임 오버!");
             return true;
@@ -53,22 +56,28 @@ public class GameManager {
             System.out.println("\n🎉 AI를 쓰러뜨렸습니다! 당신의 승리입니다!");
             return true;
         }
-
-        // 둘 다 살아있으면 게임 계속
         return false;
     }
 
+    // ----------------------------
+    // 🧍 플레이어 생성
+    // ----------------------------
     public void createPlayer() {
         System.out.print("플레이어 이름을 입력하세요: ");
         String playerName = sc.nextLine();
 
+        System.out.println("------------------------------");
         player = new PlayerFighter(playerName, sc);
         ai = new AIFighter();
-
+        System.out.println("------------------------------");
         player.resetHp();
         ai.resetHp();
+        System.out.println("------------------------------");
     }
 
+    // ----------------------------
+    // 🎲 선공자 결정
+    // ----------------------------
     public Fighter decideFirstTurn() {
         System.out.println("\n🎲 선공자를 결정합니다!");
         System.out.println("엔터를 눌러 주사위를 굴리세요...");
