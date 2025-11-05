@@ -17,21 +17,22 @@ public class GameManager {
         createPlayer();
         System.out.println("\n✅초기화 완료! 게임을 시작합니다.\n");
 
-        String firstTurn = decideFirstTurn(); // INFO: "player", "ai" 로 응답이 옵니다.
+        Fighter firstTurnUser = decideFirstTurn(); // INFO: "player", "ai" 로 응답이 옵니다.
+        ConsoleUI.printTurnInfo(firstTurnUser);
     }
 
     public void createPlayer() {
         System.out.print("플레이어 이름을 입력하세요: ");
         String playerName = sc.nextLine();
 
-        Fighter player = new PlayerFighter(playerName, sc);
-        Fighter ai = new AIFighter();
+        player = new PlayerFighter(playerName, sc);
+        ai = new AIFighter();
 
         player.resetHp();
         ai.resetHp();
     }
 
-    public String decideFirstTurn() {
+    public Fighter decideFirstTurn() {
         System.out.println("\n🎲 선공자를 결정합니다!");
         System.out.println("엔터를 눌러 주사위를 굴리세요...");
         sc.nextLine();
@@ -59,6 +60,6 @@ public class GameManager {
             }
         }
 
-        return playerDice > aiDice ? "player" : "ai";
+        return playerDice > aiDice ? player : ai;
     }
 }
