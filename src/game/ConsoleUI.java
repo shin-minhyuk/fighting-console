@@ -10,7 +10,8 @@ public class ConsoleUI {
         System.out.println("각자 랜덤한 액션을 수행하며 체력을 깎아나갑니다.\n");
     }
 
-    public static void printTurnInfo(Fighter firstTurnUser) {
-        System.out.println("첫번째 공격 턴은 " + "'" + firstTurnUser.getName() + "' 입니다.");
+    public static void printTurnInfo(int turnNumber, Fighter firstTurnUser) {
+        System.out.println("\n--- [TURN " + turnNumber + "] ---");
+        System.out.println("🎯 첫 번째 공격자는 '" + firstTurnUser.getName() + "' 입니다!\n");
     }
 }

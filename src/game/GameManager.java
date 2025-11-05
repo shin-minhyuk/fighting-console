@@ -17,8 +17,45 @@ public class GameManager {
         createPlayer();
         System.out.println("\n✅초기화 완료! 게임을 시작합니다.\n");
 
-        Fighter firstTurnUser = decideFirstTurn(); // INFO: "player", "ai" 로 응답이 옵니다.
-        ConsoleUI.printTurnInfo(firstTurnUser);
+        int turn = 1;
+        while (!isGameOver()) {
+            Fighter firstTurnUser = decideFirstTurn();
+            Fighter secondTurnUser = (firstTurnUser == player) ? ai : player;
+            ConsoleUI.printTurnInfo(turn, firstTurnUser);
+
+            // --- 임시 테스트 로직 시작 ---
+            System.out.println("공격 테스트를 진행합니다!");
+
+            int damage1 = Dice.roll(10); // 1~10 랜덤
+            secondTurnUser.applyDamage(damage1);
+
+            // 즉시 종료 여부 확인 (AI나 플레이어가 죽을 수 있으니까)
+            if (isGameOver()) break;
+
+            // 반격자 공격
+            int damage2 = Dice.roll(10);
+            firstTurnUser.applyDamage(damage2);
+
+            // 현재 체력 표시
+            System.out.println("플레이어 HP: " + player.getHp() + " || AI HP: " + ai.getHp());
+            System.out.println("-----------------------------");
+
+            turn++;
+        }
+    }
+
+    private boolean isGameOver() {
+        // 플레이어 또는 AI 체력이 0 이하라면 게임 종료
+        if (player.getHp() <= 0) {
+            System.out.println("\n💀 플레이어가 쓰러졌습니다... 게임 오버!");
+            return true;
+        } else if (ai.getHp() <= 0) {
+            System.out.println("\n🎉 AI를 쓰러뜨렸습니다! 당신의 승리입니다!");
+            return true;
+        }
+
+        // 둘 다 살아있으면 게임 계속
+        return false;
     }
 
     public void createPlayer() {

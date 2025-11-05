@@ -21,6 +21,16 @@ public abstract class Fighter {
     public int getHp() {
         return hp;
     }
+
+    private void setHp(int hp) {
+        this.hp = Math.max(0, hp); // 0 미만 내려가지 않게 안전장치
+    }
+
+    public void applyDamage(int damage) {
+        setHp(this.hp - damage);
+        System.out.println(name + "이(가) " + damage + " 대미지를 입음! (남은 HP: " + hp + ")");
+    }
+
     public String getName() {
         return name;
     }
