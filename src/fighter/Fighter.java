@@ -16,6 +16,7 @@ public abstract class Fighter {
     // SYS-04
     public void resetHp() {
         this.hp = INITIAL_HP;
+        System.out.println(name + " 체력 초기화: " + hp);
     }
     public int getHp() {
         return hp;
