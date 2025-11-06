@@ -33,16 +33,27 @@ public class GameManager {
         Fighter second = (first == player) ? ai : player;
         ConsoleUI.printTurnInfo(turn, first);
 
-        // 선공자 공격
-        Action action1 = first.chooseAction();
-        action1.execute(first, second);
+        // 선공자 공격 (수정)
+        performAttack(first, second);
         if (isGameOver()) return;
 
-        // 반격자 공격
-        Action action2 = second.chooseAction();
-        action2.execute(second, first);
+        // 반격자 공격 (수정)
+        performAttack(second, first);
 
         ConsoleUI.printHPStatus(player, ai);
+    }
+
+    private void performAttack(Fighter attacker, Fighter defender) {
+        // 액션 선택 로직
+        Action action = attacker.chooseAction();
+        // 호출 [대미지, 치명타 플래그] 배열 반환
+        int [] result = attacker.attack(defender, action);
+        int damageDealt = result[0];
+        boolean isCritical = result[1] == 1;
+
+        ConsoleUI.printActionLog(attacker.getName(), defender.getName(), action.getName(), damageDealt);
+
+        ConsoleUI.printHitEffect(isCritical);
     }
 
     // ----------------------------

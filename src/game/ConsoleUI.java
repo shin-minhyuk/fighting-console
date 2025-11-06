@@ -23,4 +23,19 @@ public class ConsoleUI {
         System.out.println("🤖 AI HP: " + ai.getHp());
         System.out.println("-----------------------------");
     }
+
+    public static void printActionLog(String attackerName, String defenderName, String actionName, int damageDealt) {
+        System.out.print(" ▶️ " + attackerName + " 의 " + actionName + "👊");
+        System.out.println(" ➡️ " + defenderName + "에게 " + damageDealt + " 대미지 💔");
+    }
+
+    public static void printHitEffect(boolean isCritical) {
+        if (isCritical) {
+            // 치명타 발생 시
+            System.out.println("  [ 💥💥 크리티컬!! 💥💥 ]");
+        } else {
+            // 일반 타격
+            System.out.println("[ 일반 공격!! ]");
+        }
+    }
 }
