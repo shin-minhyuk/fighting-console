@@ -1,5 +1,6 @@
 package game;
 
+import action.Action;
 import fighter.AIFighter;
 import fighter.Fighter;
 import fighter.PlayerFighter;
@@ -28,19 +29,18 @@ public class GameManager {
     // 🧩 한 턴 진행 (공격 / 반격)
     // ----------------------------
     private void playTurn(int turn) {
-        Fighter firstTurnUser = decideFirstTurn();
-        Fighter secondTurnUser = (firstTurnUser == player) ? ai : player;
-        ConsoleUI.printTurnInfo(turn, firstTurnUser);
+        Fighter first = decideFirstTurn();
+        Fighter second = (first == player) ? ai : player;
+        ConsoleUI.printTurnInfo(turn, first);
 
         // 선공자 공격
-        int damage1 = Dice.roll(10);
-        secondTurnUser.applyDamage(damage1);
-
+        Action action1 = first.chooseAction();
+        action1.execute(first, second);
         if (isGameOver()) return;
 
         // 반격자 공격
-        int damage2 = Dice.roll(10);
-        firstTurnUser.applyDamage(damage2);
+        Action action2 = second.chooseAction();
+        action2.execute(second, first);
 
         ConsoleUI.printHPStatus(player, ai);
     }

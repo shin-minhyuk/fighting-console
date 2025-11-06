@@ -1,5 +1,7 @@
 package fighter;
 
+import action.Action;
+
 // NFR-010
 public abstract class Fighter {
     // 이름
@@ -36,4 +38,6 @@ public abstract class Fighter {
     public String getName() {
         return name;
     }
+
+    public abstract Action chooseAction();
 }

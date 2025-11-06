@@ -1,5 +1,7 @@
 package fighter;
 
+import action.Action;
+
 import java.util.Scanner;
 
 public class PlayerFighter extends Fighter {
@@ -11,32 +13,22 @@ public class PlayerFighter extends Fighter {
         super(name);
         this.scanner = scanner;
         System.out.println("플레이어 생성 완료: " + name);
-
     }
 
-    public String chooseAction() {
-        while (true) {
-            System.out.print("액션을 선택하세요 (1 : 주먹 \n 2 : 발차기 \n 3 : 어퍼컷 \n 4 : 로우킥 \n 5 : 피하기 ");
+    @Override
+    public Action chooseAction() {
+        System.out.println("\n==== 사용할 공격을 선택하세요 ====");
+        for (Action action : Action.values()) {
+            System.out.println("- " + action.getName() + " (" + action.getBaseDamage() + " 피해)");
+        }
+        System.out.print("입력: ");
+        String input = scanner.nextLine().trim();
 
-            if (scanner.hasNextInt()) {
-                int choice = scanner.nextInt();
-
-                scanner.nextLine();
-
-                switch (choice) {
-                    case 1: return "주먹";
-                    case 2: return "발차기";
-                    case 3: return "어퍼컷";
-                    case 4: return "로우킥";
-                    case 5: return "피하기";
-                    default:
-                        System.out.println("1 부터 5 사이의 숫자를 입력해주세요!");
-                        break;
-                }
-            }else {
-                System.out.println("잘못된 입력입니다! 1 부터 5 사이의 숫자를 입력해주세요!");
-                scanner.nextLine();
-            }
+        try {
+            return Action.fromName(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println("잘못된 입력입니다. 기본 공격(PUNCH)으로 진행합니다.");
+            return Action.PUNCH;
         }
     }
 }

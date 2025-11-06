@@ -1,11 +1,24 @@
 package fighter;
 
-public class AIFighter extends Fighter{
+import action.Action;
+
+import java.util.Random;
+
+public class AIFighter extends Fighter {
+
+    private final Random random = new Random();
 
     public AIFighter() {
         super(createRandomName());
         System.out.println("AI 생성 완료: " + super.getName());
     }
+
+    @Override
+    public Action chooseAction() {
+        Action[] actions = Action.values();
+        return actions[random.nextInt(actions.length)];
+    }
+
 
     private static String createRandomName() {
         int num = (int) Math.floor(Math.random() * 6) + 1;
