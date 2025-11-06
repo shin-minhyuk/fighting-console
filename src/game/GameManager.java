@@ -50,10 +50,10 @@ public class GameManager {
     // ----------------------------
     private boolean isGameOver() {
         if (player.getHp() <= 0) {
-            System.out.println("\n💀 플레이어가 쓰러졌습니다... 게임 오버!");
+            System.out.println("💀 플레이어가 쓰러졌습니다... 게임 오버!");
             return true;
         } else if (ai.getHp() <= 0) {
-            System.out.println("\n🎉 AI를 쓰러뜨렸습니다! 당신의 승리입니다!");
+            System.out.println("🎉 AI를 쓰러뜨렸습니다! 당신의 승리입니다!");
             return true;
         }
         return false;

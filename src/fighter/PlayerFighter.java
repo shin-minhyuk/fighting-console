@@ -17,7 +17,7 @@ public class PlayerFighter extends Fighter {
 
     @Override
     public Action chooseAction() {
-        System.out.println("\n==== 사용할 공격을 선택하세요 ====");
+        System.out.println("\n---- 사용할 공격을 선택하세요 ----");
         for (Action action : Action.values()) {
             System.out.println("- " + action.getName() + " (" + action.getBaseDamage() + " 피해)");
         }

@@ -19,7 +19,6 @@ public class AIFighter extends Fighter {
         return actions[random.nextInt(actions.length)];
     }
 
-
     private static String createRandomName() {
         int num = (int) Math.floor(Math.random() * 6) + 1;
 
