@@ -79,7 +79,7 @@ public class GameManager {
     // 🎲 선공자 결정
     // ----------------------------
     public Fighter decideFirstTurn() {
-        System.out.println("\n🎲 선공자를 결정합니다!");
+        System.out.println("🎲 선공자를 결정합니다!");
         System.out.println("엔터를 눌러 주사위를 굴리세요...");
         sc.nextLine();
 

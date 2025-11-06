@@ -31,7 +31,6 @@ public abstract class Fighter {
 
     public void applyDamage(int damage) {
         setHp(this.hp - damage);
-        System.out.println(name + "이(가) " + damage + " 대미지를 입음!");
     }
 
     public String getName() {
