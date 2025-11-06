@@ -27,7 +27,7 @@ public class PlayerFighter extends Fighter {
                     case 1: return "주먹";
                     case 2: return "발차기";
                     case 3: return "어퍼컷";
-                    case 4: return "로우킷";
+                    case 4: return "로우킥";
                     case 5: return "피하기";
                     default:
                         System.out.println("1 부터 5 사이의 숫자를 입력해주세요!");

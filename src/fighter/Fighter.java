@@ -1,4 +1,5 @@
 package fighter;
+
 // NFR-010
 public abstract class Fighter {
     // 이름
@@ -13,6 +14,8 @@ public abstract class Fighter {
         // 초기 체력 = 100
         this.hp = INITIAL_HP;
     }
+    // ACT-01/02
+
     // SYS-04
     public void resetHp() {
         this.hp = INITIAL_HP;
